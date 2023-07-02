@@ -17,6 +17,20 @@ describe('Application', () => {
     const paragraphElement = screen.getByText('All fields are mandatory')
     expect(paragraphElement).toBeInTheDocument()
 
+    //TextMatch USING STRINF REGEX,FUNCTION
+    const paragraphElement1 = screen.getByText('ll fields are mandatory', {
+      exact: false,
+    })
+    expect(paragraphElement1).toBeInTheDocument()
+
+    const paragraphElement2 = screen.getByText(/field/)
+    expect(paragraphElement2).toBeInTheDocument()
+
+    const paragraphElement3 = screen.getByText((content) =>
+      content.startsWith('All')
+    )
+    expect(paragraphElement3).toBeInTheDocument()
+
     const titleElement = screen.getByTitle('close')
     expect(titleElement).toBeInTheDocument()
 
